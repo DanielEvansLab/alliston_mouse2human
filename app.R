@@ -1,7 +1,6 @@
 library(shiny)
 library(DT)
-library(dplyr)
-library(readr)
+library(tidyverse)
 #library(multtest)
 
 dat <- read_rds("data/gene_dat.rds")
