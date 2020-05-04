@@ -69,7 +69,7 @@ server <- function(input, output, session) {
                 #    mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
         }
     }
-    ) #end reactive
+    }) #end reactive
     
     output$genes <- DT::renderDT({
         datatable(
