@@ -1,7 +1,7 @@
 library(shiny)
 library(DT)
 library(tidyverse)
-#library(multtest)
+library(multtest)
 
 dat <- read_rds("data/gene_dat.rds")
 
@@ -42,21 +42,27 @@ server <- function(input, output, session) {
         if(input$batch_input == "symbol_human"){
             dat_filtered <- dat %>%
                 filter(symbol_human %in% myrows) 
-            dat_filtered <- dat_filtered %>%
-                mutate(P_FRAC_Bonf = P_FRAC*sum(!is.na(dat_filtered$P_FRAC))) %>%
-                mutate(P_BMD_Bonf = P_BMD*sum(!is.na(dat_filtered$P_BMD))) 
-            #adjp1 <- mt.rawp2adjp(dat_filtered[["P_FRAC"]], proc = "BH")
             #dat_filtered <- dat_filtered %>%
-            #    mutate(P_FRAC_BH = adjp1$adjp[order(adjp1$index),"BH"])
-            #adjp1 <- mt.rawp2adjp(dat_filtered[["P_BMD"]], proc = "BH")
-            #dat_filtered %>%
-            #    mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
+            #    mutate(P_FRAC_Bonf = P_FRAC*sum(!is.na(dat_filtered$P_FRAC))) %>%
+            #    mutate(P_BMD_Bonf = P_BMD*sum(!is.na(dat_filtered$P_BMD))) 
+            adjp1 <- mt.rawp2adjp(dat_filtered[["P_FRAC"]], proc = "BH")
+            dat_filtered <- dat_filtered %>%
+                mutate(P_FRAC_BH = adjp1$adjp[order(adjp1$index),"BH"])
+            adjp1 <- mt.rawp2adjp(dat_filtered[["P_BMD"]], proc = "BH")
+            dat_filtered %>%
+                mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
         } else if(input$batch_input == "symbol_mouse"){
             dat_filtered <- dat %>%
                 filter(symbol_mouse %in% myrows) 
+            #dat_filtered <- dat_filtered %>%
+            #    mutate(P_FRAC_Bonf = P_FRAC*sum(!is.na(dat_filtered$P_FRAC))) %>%
+            #    mutate(P_BMD_Bonf = P_BMD*sum(!is.na(dat_filtered$P_BMD))) 
+            adjp1 <- mt.rawp2adjp(dat_filtered[["P_FRAC"]], proc = "BH")
             dat_filtered <- dat_filtered %>%
-                mutate(P_FRAC_Bonf = P_FRAC*sum(!is.na(dat_filtered$P_FRAC))) %>%
-                mutate(P_BMD_Bonf = P_BMD*sum(!is.na(dat_filtered$P_BMD))) 
+                mutate(P_FRAC_BH = adjp1$adjp[order(adjp1$index),"BH"])
+            adjp1 <- mt.rawp2adjp(dat_filtered[["P_BMD"]], proc = "BH")
+            dat_filtered %>%
+                mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
         }
     }
     ) #end reactive
