@@ -28,7 +28,8 @@ ui <- fluidPage(
                 tabPanel("Readme", includeMarkdown("data/README_results.md")),
                 tabPanel("Full table", DT::DTOutput("genes")),
                 tabPanel("Batch query", DT::DTOutput("genes_filtered")),
-                tabPanel("Download", downloadButton("downloadData", "Download all data"))
+                tabPanel("Download", downloadButton("downloadData", "Download all data")),
+		tabPanel("Code", includeMarkdown("data/README_code.md"))
             )
         )
     )
