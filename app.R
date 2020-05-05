@@ -25,6 +25,7 @@ ui <- fluidPage(
         ),
         mainPanel(
             tabsetPanel(
+		tabPanel("About", includeMarkdown("data/README_about.md")),
                 tabPanel("Readme", includeMarkdown("data/README_results.md")),
                 tabPanel("Full table", DT::DTOutput("genes")),
                 tabPanel("Batch query", DT::DTOutput("genes_filtered")),
