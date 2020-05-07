@@ -34,7 +34,11 @@ Gene-based genetic-association results with human BMD and fracture are provided 
 
 ## Description of additional variables in Batch query tab
 
-+ `P_FRAC_Bonf`: Bonferroni-corrected P-values of most significant SNP associations with human bone fracture in gene region. Corrected for number of genes in batch query.
++ `P_FRAC_Bonf`: Bonferroni-corrected gene-based P-values for human bone fracture, corrected for number of genes in batch query.
 
-+ `P_BMD_Bonf`: Bonferroni-corrected P-values of most significant SNP associations with BMD in gene region. Corrected for number of genes in batch query.
++ `P_BMD_Bonf`: Bonferroni-corrected gene-based P-values for human BMD, corrected for number of genes in batch query. 
+
++ `P_FRAC_BH`: Adjusted human bone fracture P-values using the Benjamini-Hochberg (1995) FDR procedure, corrected for number of genes in batch query.
+
++ `P_BMD_BH`: Adjusted human BMD P-values using the Benjamini-Hochberg (1995) FDR procedure, corrected for number of genes in batch query.
 

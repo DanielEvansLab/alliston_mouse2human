@@ -6,7 +6,7 @@ This resource is a collaborative effort between the labs of Tamara Alliston at U
 
 ## Introduction
 
-Genome-wide profiling of mouse gene expression yieldslarge data sets, and even after applying statistical methods to control for false discovery, researchers are often forced to sift through long lists of significant differentially expressed genes (DEGs). A major challenge to laboratory researchers using unbiased genomic approaches is making informed decisions about which novel genes to pursue further using time-and resource-intensive laboratory-based analyses. 
+Genome-wide profiling of mouse gene expression yields large data sets, and even after applying statistical methods to control for false discovery, researchers are often forced to sift through long lists of significant differentially expressed genes (DEGs). A major challenge to laboratory researchers using unbiased genomic approaches is making informed decisions about which novel genes to pursue further using time-and resource-intensive laboratory-based analyses. 
 
 The mouse2human web resource provides an easy-to-use web-based tool to determine which mouse genes have relevance to human osteoporosis and bone fracture. Knowing which genes have relevance in humans will facilitate translation of experimental laboratory results to human clinical research, and also identify genes that should be prioritized for in-depth laboratory investigation. 
 
@@ -14,7 +14,7 @@ Genome-wide association studies (GWAS) have been performed on bone mineral densi
 
 ## Results on this website
 
-We estimated gene-based scores using full GWAS results based on 426,824 UK Biobank participants with bone mineral density estimated from quantitative heel ultrasounds (eBMD) and 53,184/373,611 fracture cases/controls (Morris, Kemp et al. 2019) available for download from the [GEFOS website](http://www.gefos.org/) [here](http://www.gefos.org/?q=content/data-release-2018). We used MAGMA to estimate gene scores based on the most significant variant within a gene region (50 kb upstream and downstream of each gene) adjusted for potential confounders, such as gene size, gene density, and linkage disequilibrium (LD) between variants (de Leeuw, Mooij et al. 2015). 
+We estimated gene-based scores using full GWAS results based on 426,824 UK Biobank participants with bone mineral density estimated from quantitative heel ultrasounds (eBMD) and 53,184/373,611 fracture cases/controls (Morris, Kemp et al. 2019) available for download from the [GEFOS](http://www.gefos.org/) website [here](http://www.gefos.org/?q=content/data-release-2018). We used MAGMA to estimate gene scores based on the most significant variant within a gene region (50 kb upstream and downstream of each gene) adjusted for potential confounders, such as gene size, gene density, and linkage disequilibrium (LD) between variants (de Leeuw, Mooij et al. 2015). 
 
 Homology between human and mouse genes was based on NCBI's homologene resource. Homologene IDs for human-mouse homologs reported on this website were from the file HOM_MouseHumanSequence.rpt downloaded on 2020-04-28 from [here](http://www.informatics.jax.org/downloads/reports/index.html#homology)
 
