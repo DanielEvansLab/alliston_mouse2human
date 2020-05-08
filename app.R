@@ -68,7 +68,7 @@ server <- function(input, output, session) {
         datatable(
             dat %>%
                 select(input$mycols),
-            options = list(lengthMenu = c(10, 50, 500), pageLength = 8, dom = 'lfrtipB', 
+            options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
             extensions = 'Buttons',
@@ -79,7 +79,7 @@ server <- function(input, output, session) {
     output$genes_filtered <- DT::renderDT({
         datatable(
             rv_filter(),
-            options = list(lengthMenu = c(10, 50, 500), pageLength = 8, dom = 'lfrtipB', 
+            options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
             extensions = 'Buttons',
