@@ -58,7 +58,7 @@ server <- function(input, output, session) {
         # Multiple testing P_BMD
         if(sum(!is.na(dat_filtered$P_BMD)) > 0){
           adjp1 <- mt.rawp2adjp(dat_filtered[["P_BMD"]], proc = c("Bonferroni", "BH"))
-          dat_filtered %>%
+          dat_filtered <- dat_filtered %>%
             mutate(P_BMD_Bonf = adjp1$adjp[order(adjp1$index),"Bonferroni"]) %>%
             mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
         }
@@ -78,7 +78,8 @@ server <- function(input, output, session) {
         })
     output$genes_filtered <- DT::renderDT({
         datatable(
-            rv_filter(),
+            rv_filter() %>%
+              select(input$mycols),
             options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
