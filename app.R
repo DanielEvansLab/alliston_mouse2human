@@ -79,7 +79,7 @@ server <- function(input, output, session) {
     output$genes_filtered <- DT::renderDT({
         datatable(
             rv_filter() %>%
-              select(input$mycols),
+              select(c(input$mycols, "P_FRAC_Bonf", "P_FRAC_BH", "P_BMD_Bonf", "P_BMD_BH")),
             options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
