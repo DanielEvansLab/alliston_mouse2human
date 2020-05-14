@@ -146,12 +146,17 @@ gene_dat %>%
   table()
 
 gene_dat <- gene_dat %>%
-  select(entrez_geneID_human, symbol_human, chr_build37, start_build37, stop_build37,
-         homologene_ID, entrez_geneID_mouse, symbol_mouse, NSNPS_FRAC,
-         ZSTAT_FRAC, P_FRAC, NSNPS_BMD, ZSTAT_BMD, P_BMD)
+  select(symbol_mouse, entrez_geneID_mouse, symbol_human, entrez_geneID_human, 
+         chr_build37, start_build37, stop_build37, homologene_ID, 
+         NSNPS_FRAC, ZSTAT_FRAC, P_FRAC, 
+         NSNPS_BMD, ZSTAT_BMD, P_BMD) %>%
+  rename(chr = chr_build37, locus_start = start_build37, locus_end = stop_build37,
+         entrez_mouse = entrez_geneID_mouse, entrez_human = entrez_geneID_human,
+         FRAC_NSNPS = NSNPS_FRAC, FRAC_ZSTAT = ZSTAT_FRAC, FRAC_P = P_FRAC,
+         BMD_NSNPS = NSNPS_BMD, BMD_ZSTAT = ZSTAT_BMD, BMD_P = P_BMD)
 
-gene_dat[["entrez_geneID_human"]] <- gsub("(.*)", "<a href='https://www.ncbi.nlm.nih.gov/gene/?term=\\1' target='_blank'>\\1</a>", gene_dat[["entrez_geneID_human"]])
-gene_dat[["entrez_geneID_mouse"]] <- gsub("(.*)", "<a href='https://www.ncbi.nlm.nih.gov/gene/?term=\\1' target='_blank'>\\1</a>", gene_dat[["entrez_geneID_mouse"]])
+gene_dat[["entrez_human"]] <- gsub("(.*)", "<a href='https://www.ncbi.nlm.nih.gov/gene/?term=\\1' target='_blank'>\\1</a>", gene_dat[["entrez_human"]])
+gene_dat[["entrez_mouse"]] <- gsub("(.*)", "<a href='https://www.ncbi.nlm.nih.gov/gene/?term=\\1' target='_blank'>\\1</a>", gene_dat[["entrez_mouse"]])
 gene_dat[["homologene_ID"]] <- gsub("(.*)", "<a href='https://www.ncbi.nlm.nih.gov/homologene/?term=\\1' target='_blank'>\\1</a>", gene_dat[["homologene_ID"]])
 
 write_rds(gene_dat, path = "out/gene_dat.rds")
