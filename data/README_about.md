@@ -20,7 +20,9 @@ Homology between human and mouse genes was based on NCBI's homologene resource. 
 
 Gene-based results for all genes are provided in an interactive searchable table (Full table tab). Users can search the table based on human or mouse gene symbols or NCBI IDs. Clicking on NCBI gene IDs takes users to the corresponding NCBI Gene page.
 
-Batch queries for multiple genes can be performed by first selecting whether the human or mouse gene symbols will be provided, followed by entering or pasting gene symbols into the text box. One gene symbol per line. Upon clicking on the "Execute batch query" button, the batch query results can be found in the Batch query tab. Results from the batch query can be downloaded using the csv or excel buttons at the bottom of the batch query result table, or can be copied to the clipboard using the copy button at the bottom of the result table.
+Batch queries for multiple genes can be performed by first selecting whether the human or mouse gene symbols will be provided, followed by entering or pasting gene symbols into the text box. One gene symbol per line. Upon clicking on the "Execute batch query" button, the batch query results can be found in the Batch query tab. Multiple testing correction for the number of batch query genes is provided using the Bonferroni method to control the family-wise error rate and the Benjamini-Hochberg (1995) procedure to control the false-discovery rate.
+
+Batch query results can be downloaded using the csv or excel buttons at the bottom of the batch query result table, or can be copied to the clipboard using the copy button at the bottom of the result table.
 
 The complete table of gene-based scores can be downloaded using the `Download all data` button in the Download tab. 
 

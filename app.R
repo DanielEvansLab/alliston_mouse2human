@@ -6,10 +6,12 @@ library(multtest)
 dat <- read_rds("data/gene_dat.rds")
 
 ui <- fluidPage( 
-    titlePanel("Mouse2Human BMD and Fracture table"),
+    titlePanel("Mouse2Human BMD and Fracture App"),
     sidebarLayout(
         sidebarPanel(
-            checkboxGroupInput('mycols', 'Select columns to display', choices = names(dat), selected = names(dat)[!names(dat) %in% c("chr_build37", "start_build37", "stop_build37", "homologene_ID")]),
+            checkboxGroupInput('mycols', 'Select columns to display', 
+                               choices = names(dat)[!names(dat) %in% c("FRAC_ZSTAT", "FRAC_P", "BMD_ZSTAT", "BMD_P")], 
+                               selected = names(dat)[!names(dat) %in% c("chr", "locus_start", "locus_end", "homologene_ID", "entrez_human", "FRAC_NSNPS", "BMD_NSNPS")]),
             radioButtons("batch_input", "Batch query input", c(
                 "None selected" = "",
                 "Human Gene Symbol" = "symbol_human",
@@ -50,26 +52,26 @@ server <- function(input, output, session) {
             dat_filtered <- dat %>%
                 filter(symbol_mouse %in% myrows) 
         }
-        # Multiple testing P_FRAC
-        if(sum(!is.na(dat_filtered$P_FRAC)) > 0){
-          adjp1 <- mt.rawp2adjp(dat_filtered[["P_FRAC"]], proc = c("Bonferroni", "BH"))
+        # Multiple testing FRAC_P
+        if(sum(!is.na(dat_filtered$FRAC_P)) > 0){
+          adjp1 <- mt.rawp2adjp(dat_filtered[["FRAC_P"]], proc = c("Bonferroni", "BH"))
           dat_filtered <- dat_filtered %>%
-            mutate(P_FRAC_Bonf = adjp1$adjp[order(adjp1$index),"Bonferroni"])  %>%
-            mutate(P_FRAC_BH = adjp1$adjp[order(adjp1$index),"BH"])
+            mutate(FRAC_P_Bonf = adjp1$adjp[order(adjp1$index),"Bonferroni"])  %>%
+            mutate(FRAC_P_BH = adjp1$adjp[order(adjp1$index),"BH"])
         }
-        # Multiple testing P_BMD
-        if(sum(!is.na(dat_filtered$P_BMD)) > 0){
-          adjp1 <- mt.rawp2adjp(dat_filtered[["P_BMD"]], proc = c("Bonferroni", "BH"))
+        # Multiple testing BMD_P
+        if(sum(!is.na(dat_filtered$BMD_P)) > 0){
+          adjp1 <- mt.rawp2adjp(dat_filtered[["BMD_P"]], proc = c("Bonferroni", "BH"))
           dat_filtered <- dat_filtered %>%
-            mutate(P_BMD_Bonf = adjp1$adjp[order(adjp1$index),"Bonferroni"]) %>%
-            mutate(P_BMD_BH = adjp1$adjp[order(adjp1$index),"BH"])
+            mutate(BMD_P_Bonf = adjp1$adjp[order(adjp1$index),"Bonferroni"]) %>%
+            mutate(BMD_P_BH = adjp1$adjp[order(adjp1$index),"BH"])
         }
     }) #end reactive
     
     output$genes <- DT::renderDT({
         datatable(
             dat %>%
-                select(input$mycols),
+                select(c(input$mycols, "FRAC_ZSTAT", "FRAC_P", "BMD_ZSTAT", "BMD_P")),
             options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
@@ -81,7 +83,7 @@ server <- function(input, output, session) {
     output$genes_filtered <- DT::renderDT({
         datatable(
             rv_filter() %>%
-              select(c(input$mycols, "P_FRAC_Bonf", "P_FRAC_BH", "P_BMD_Bonf", "P_BMD_BH")),
+              select(c(input$mycols, "FRAC_ZSTAT", "FRAC_P", "FRAC_P_Bonf", "FRAC_P_BH", "BMD_ZSTAT", "BMD_P", "BMD_P_Bonf", "BMD_P_BH")),
             options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
