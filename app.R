@@ -6,7 +6,7 @@ library(multtest)
 dat <- read_rds("data/gene_dat.rds")
 
 ui <- fluidPage( 
-    titlePanel("Mouse2Human BMD and Fracture App"),
+    titlePanel("Mouse to Human BMD and Fracture Results"),
     sidebarLayout(
         sidebarPanel(
             checkboxGroupInput('mycols', 'Select columns to display', 

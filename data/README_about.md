@@ -1,9 +1,5 @@
 # Description of mouse2human resource
 
-## Research groups and funding
-
-This resource is a collaborative effort between the labs of Tamara Alliston at UCSF and Daniel Evans at UCSF/CPMCRI. This resource was supported by the UCSF Core Center for Musculoskeletal Biology and Medicine (CCMBM) of the National Institute of Health's National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) under the award number P30AR075055.
-
 ## Introduction
 
 Genome-wide profiling of mouse gene expression yields large data sets, and even after applying statistical methods to control for false discovery, researchers are often forced to sift through long lists of significant differentially expressed genes (DEGs). A major challenge to laboratory researchers using unbiased genomic approaches is making informed decisions about which novel genes to pursue further using time-and resource-intensive laboratory-based analyses. 
@@ -32,3 +28,6 @@ The complete table of gene-based scores can be downloaded using the `Download al
 
 2. de Leeuw CA, Mooij JM, Heskes T, Posthuma D (2015) MAGMA: Generalized Gene-Set Analysis of GWAS Data. PLoS Comput Biol 11(4): e1004219. https://doi.org/10.1371/journal.pcbi.1004219
 
+## Research groups and funding
+
+This resource is a collaborative effort between Serra Kaya and Tamara Alliston at UCSF and Daniel Evans at UCSF/CPMCRI. This resource was supported by the UCSF Core Center for Musculoskeletal Biology and Medicine (CCMBM) of the National Institute of Health's National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) under the award number P30AR075055.
