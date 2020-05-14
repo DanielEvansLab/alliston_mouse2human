@@ -9,7 +9,7 @@ ui <- fluidPage(
     titlePanel("Mouse2Human BMD and Fracture table"),
     sidebarLayout(
         sidebarPanel(
-            checkboxGroupInput('mycols', 'Select columns to display', choices = names(dat), selected = names(dat)),
+            checkboxGroupInput('mycols', 'Select columns to display', choices = names(dat), selected = names(dat)[!names(dat) %in% c("chr_build37", "start_build37", "stop_build37", "homologene_ID")]),
             radioButtons("batch_input", "Batch query input", c(
                 "None selected" = "",
                 "Human Gene Symbol" = "symbol_human",
@@ -18,10 +18,12 @@ ui <- fluidPage(
             conditionalPanel(
                 condition = "input.batch_input != ''",
                 textAreaInput(inputId = 'query_symbol', 
-                            label = "Enter gene symbols, one per line"
+                            label = HTML("Enter gene symbols<br/>One gene per line<br/>Case sensitive"),
+                            width = "70%"
                             ),
-                actionButton("show_filter", "Execute! Results in Batch query tab")
-            )
+                actionButton("show_filter", HTML("Execute!<br/>Results in Batch query tab"))
+            ),
+            width = 3
         ),
         mainPanel(
             tabsetPanel(
