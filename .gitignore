@@ -1,3 +1,4 @@
 .DS_Store
 data/gene_dat.rds
+data/gene_dat_download.rds
 rsconnect/

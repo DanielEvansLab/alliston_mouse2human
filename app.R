@@ -28,13 +28,13 @@ ui <- fluidPage(
             width = 3
         ),
         mainPanel(
-            tabsetPanel(
-		tabPanel("About", includeMarkdown("data/README_about.md")),
-                tabPanel("Readme", includeMarkdown("data/README_results.md")),
-                tabPanel("Full table", DT::DTOutput("genes")),
-                tabPanel("Batch query", DT::DTOutput("genes_filtered")),
-                tabPanel("Download", downloadButton("downloadData", "Download all data")),
-		tabPanel("Code", includeMarkdown("data/README_code.md"))
+            tabsetPanel(id = "myTabset",
+		        tabPanel(title = "About", includeMarkdown("data/README_about.md")),
+                tabPanel(title = "Readme", includeMarkdown("data/README_results.md")),
+                tabPanel(title = "Full table", DT::DTOutput("genes")),
+                tabPanel(title = "Batch query", value = "myBatch", DT::DTOutput("genes_filtered")),
+                tabPanel(title = "Download", downloadButton("downloadData", "Download all data")),
+		        tabPanel(title = "Code", includeMarkdown("data/README_code.md"))
             )
         )
     )
@@ -42,6 +42,14 @@ ui <- fluidPage(
 
 
 server <- function(input, output, session) {
+    
+    observeEvent(input$show_filter, {
+        updateTabsetPanel(session,
+                          inputId = "myTabset",
+                          selected = "myBatch"
+        )
+    })
+    
     rv_filter <- eventReactive(input$show_filter, {
         #clean input of free text field
         myrows <- str_split(input$query_symbol, pattern = "\n")[[1]]
@@ -72,7 +80,7 @@ server <- function(input, output, session) {
         datatable(
             dat %>%
                 select(c(input$mycols, "FRAC_ZSTAT", "FRAC_P", "BMD_ZSTAT", "BMD_P")),
-            options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
+            options = list(lengthMenu = c(10, 50, 500, 1500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
             extensions = 'Buttons',
@@ -84,7 +92,7 @@ server <- function(input, output, session) {
         datatable(
             rv_filter() %>%
               select(c(input$mycols, "FRAC_ZSTAT", "FRAC_P", "FRAC_P_Bonf", "FRAC_P_BH", "BMD_ZSTAT", "BMD_P", "BMD_P_Bonf", "BMD_P_BH")),
-            options = list(lengthMenu = c(10, 50, 500), pageLength = 10, dom = 'lfrtipB', 
+            options = list(lengthMenu = c(10, 50, 500, 1500), pageLength = 10, dom = 'lfrtipB', 
                            buttons = c('copy', 'csv', 'excel')), 
             escape = FALSE, 
             extensions = 'Buttons',
@@ -94,10 +102,11 @@ server <- function(input, output, session) {
     })
     output$downloadData <- downloadHandler(
         filename = function(){
-            paste0("data_", Sys.Date(), ".csv")
+            paste0("data_", Sys.Date(), ".rds")
         }, 
         content = function(file){
-            write.csv(dat, file)
+            dat_download <- read_rds("data/gene_dat_download.rds")
+            write_rds(dat_download, file)
         }
     )
 }
