@@ -1,24 +1,44 @@
-# Trait listing
-To do: include rendering of Rmd to display table
+# Gene-based BMD and fracture results
 
-+ `longevity 90` = Human longevity association with 90th percentile lifespan.
+Gene-based genetic-association results with human BMD and fracture are provided in the interactive, searchable table.
 
-+ `longevity 99` = Human longevity association with 99th percentile lifespan.
+## Description of variables in Full Table tab
 
-# Description of variables
-+ `trait` = S-PrediXcan association with which trait/outcome
-+ `gene` = Ensembl gene ID
-+ `gene_name` = Human gene symbol
-+ `zscore` = S-PrediXcan's effect size divided by the standard error for the association between the tissue-specific predicted gene expression and the trait
-+ `effect_size` = S-PrediXcan's effect size for the association between the tissue-specific predicted gene expression and the trait
-+ `pvalue` = P-value of the S-PrediXcan association between tissue-specific predicted gene expression and the trait
-+ `var_g` = Variance of the gene expression
-+ `pred_perf_r2` = R2 of tissue model's correlation to gene's measured transcriptome (prediction performance)
-+ `pred_perf_pval` = P-value of tissue model's correlation to gene's measured transcriptome (prediction performance)
-+ `n_snps_used` = Number of snps from GWAS that were used in S-PrediXcan analysis
-+ `n_snps_in_cov` = Number of snps in the covariance matrix
-+ `n_snps_in_model` = Number of snps in the tissue-specific PredictDB model
-+ `tissue` = GTEx tissue used for prediction
-+ `category` = Trait category
-+ `n` = Sample size of the GWAS meta-analysis used in each S-PrediXcan trait association
++ `entrez_geneID_human`: NCBI human gene ID. Link opens a new tab with the NCBI Gene page.
+
++ `symbol_human`: NCBI human gene symbol.
+
++ `chr_build37`: Chromosome location of human gene on genome assembly build 37.
+
++ `start_build37`: Base-pair position of start of human gene physical boundary used in MAGMA based on genome assembly build 37.
+
++ `stop_build37`: Base-pair position of end of human gene physical boundary used in MAGMA based on genome assembly build 37.
+
++ `homologene_ID`: NCBI homologene ID for human-mouse homologs based on HOM_MouseHumanSequence.rpt downloaded from [here](http://www.informatics.jax.org/downloads/reports/index.html#homology)
+
++ `entrez_geneID_mouse`: NCBI mouse gene ID. Link opens a new tab with the NCBI Gene page.
+
++ `symbol_mouse`: NCBI mouse gene symbol.
+
++ `NSNPS_FRAC`: Number of SNP associations with fracture in gene region.
+
++ `ZSTAT_FRAC`: Test statistic (Z-score) of most significant SNP association with human bone fracture in gene region.
+
++ `P_FRAC`: Empirical P-value of most significant SNP association with human bone fracture in gene region.
+
++ `NSNPS_BMD`: Number of SNP associations with BMD in gene region.
+
++ `ZSTAT_BMD`: Test statistic (Z-score) of most significant SNP association with BMD in gene region.
+
++ `P_BMD`: Empirical P-value of most significant SNP association with BMD in gene region.
+
+## Description of additional variables in Batch query tab
+
++ `P_FRAC_Bonf`: Bonferroni-corrected gene-based P-values for human bone fracture, corrected for number of genes in batch query.
+
++ `P_BMD_Bonf`: Bonferroni-corrected gene-based P-values for human BMD, corrected for number of genes in batch query. 
+
++ `P_FRAC_BH`: Adjusted human bone fracture P-values using the Benjamini-Hochberg (1995) FDR procedure, corrected for number of genes in batch query.
+
++ `P_BMD_BH`: Adjusted human BMD P-values using the Benjamini-Hochberg (1995) FDR procedure, corrected for number of genes in batch query.
 
