@@ -30,4 +30,4 @@ The complete table of gene-based scores can be downloaded using the `Download al
 
 ## Research groups and funding
 
-This resource is a collaborative effort between Serra Kaya and Tamara Alliston at UCSF and Daniel Evans at UCSF/CPMCRI. This resource was supported by the UCSF Core Center for Musculoskeletal Biology and Medicine (CCMBM) of the National Institute of Health's National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) under the award number P30AR075055.
+This resource is a collaborative effort between Serra Kaya and Tamara Alliston at UCSF and Daniel Evans at UCSF/CPMCRI. This resource was supported by the UCSF Core Center for Musculoskeletal Biology and Medicine (CCMBM) of the National Institute of Health's National Institute of Arthritis and Musculoskeletal and Skin Diseases (NIAMS) under the award number P30AR075055 and the National Institute of Dental and Craniofacial Research (NIDCR) under the award number R01DE019284.
